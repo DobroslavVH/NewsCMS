@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<NewsCMS.Areas.Admin.Models.SubCategory>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Subcategory list</h2>
+
+@using (Html.BeginForm("Index", "SubCategories", FormMethod.Get))
+{
+    <p>
+        Search: @Html.TextBox("searchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategorySortParm, currentFilter = ViewBag.CurrentFilter})
+        </th>
+        <th>
+            @Html.ActionLink("Subcategory", "Index", new { sortOrder = ViewBag.SubCategorySortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Image
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubCategoryName)
+        </td>
+        @if (item.SubCategoryImagies.Any(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.Image))
+        {
+            <td>
+                <img src="~/SubCategoryImages?id=@item.SubCategoryImagies.First(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.Image).SubCategoryImageID" alt="Image" height="80" width="80" />
+            </td>
+        }
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SubCategoryID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SubCategoryID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    <h3>@Html.ActionLink("Create subcategory", "Create")</h3>
+</p>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

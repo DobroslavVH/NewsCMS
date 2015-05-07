@@ -1,0 +1,63 @@
+﻿@model NewsCMS.Areas.Admin.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt> </dt>
+        <h2>
+            @Html.DisplayFor(model => model.Title)
+        </h2>
+
+        <p></p>
+
+        <dt>
+            @Html.DisplayName("Author")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author.FirstName)
+            @Html.DisplayFor(model => model.Author.LastName)
+        </dd>
+
+        <p></p>
+
+        @if (Model.PostImages.Any(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.PostImage))
+        {
+            <dd>
+                <img src="~/PostImage?id=@Model.PostImages.First(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.PostImage).PostImageID" alt="postiamge" width="500" />
+            </dd>
+        }
+        
+        <p></p>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName) news
+        </dd>
+
+        <p></p>
+
+        <dt>
+            Create / Update
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateAt) /
+            @Html.DisplayFor(model => model.UpdateAt)
+        </dd>
+
+        <p></p>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+    </dl>
+</div>

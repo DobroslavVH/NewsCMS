@@ -1,0 +1,48 @@
+﻿@model NewsCMS.Areas.Admin.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Category details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (Model.CategoryImages.Any(f => f.FileType == FileType.CategoryImage))
+        {
+            <dd>
+                <img src="~/CategoryImages?id=@Model.CategoryImages.First(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.CategoryImage).CategoryImageID" alt="CategoryImage" width="80" />
+            </dd>
+        }
+        <p></p>
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateAt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CategoryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

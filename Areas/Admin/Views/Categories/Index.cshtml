@@ -1,0 +1,58 @@
+﻿@model IEnumerable<NewsCMS.Areas.Admin.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Category list</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateAt)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @if (item.CategoryImages.Any(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.CategoryImage))
+            {
+            <td>
+                <img src="~/CategoryImages?id=@item.CategoryImages.First(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.CategoryImage).CategoryImageID" alt="Category Image" width="50" />
+            </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateAt)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CategoryID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    <h3>@Html.ActionLink("Create category", "Create")</h3>
+    <h3>@Html.ActionLink("Create subcategory", "Index", "SubCategories")</h3>
+</p>

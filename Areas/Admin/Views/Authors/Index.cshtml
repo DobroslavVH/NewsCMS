@@ -1,0 +1,74 @@
+﻿@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@model PagedList.IPagedList<NewsCMS.Areas.Admin.Models.Author>
+
+           
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Authors list</h2>
+
+@using (Html.BeginForm("Index", "Authors", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Avatar
+        </th>
+        <th>
+            @Html.ActionLink("Author", "Index", new { sortOrder = ViewBag.AuthorSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Create Date", "Index", new { sortOrder = ViewBag.CreateDateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Update Date", "Index", new { sortOrder = ViewBag.UpdateDateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+
+        @if (item.AuthorAvatars.Any(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.Avatar))
+        {
+        <td>
+            <img src="~/AuthorAvatars?id=@item.AuthorAvatars.First(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.Avatar).AvatarID" alt="avatar" height="50" width="50"/>
+        </td>
+        }
+
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateAt)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.AuthorID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.AuthorID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.AuthorID })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    <h3>@Html.ActionLink("Create author", "Create")</h3>
+</p>
+
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

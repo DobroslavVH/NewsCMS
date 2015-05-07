@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NewsCMS.Areas.Admin.Models.Author">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAQAAIAAAAABAAAAIAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Areas\Admin\Models\Author.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsCMS.Areas.Admin.Models.Category">
+    <Position X="9.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAIAAAAABAAAAIAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Areas\Admin\Models\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewsCMS.Areas.Admin.Models.Post">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAASAAIAAEEAgAAAAIAAAAAAABAAAAAACAAACAA=</HashCode>
+      <FileName>Areas\Admin\Models\Post.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

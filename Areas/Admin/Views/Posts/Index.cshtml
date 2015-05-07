@@ -1,0 +1,92 @@
+﻿@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@model PagedList.IPagedList<NewsCMS.Areas.Admin.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Post list</h2>
+
+
+@using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Image")
+        </th>
+        <th>
+            @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategorySortParm, currentFilter=ViewBag.CurrentFilter})
+        </th>
+        <th>
+            @Html.DisplayName("Title")
+        </th>
+        <th>
+            @Html.DisplayName("Text")
+        </th>
+        <th>
+            @Html.ActionLink("Author", "Index", new { sortOrder = ViewBag.AuthorSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Create Date", "Index", new { sortOrder = ViewBag.CreateDateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Update Date", "index", new { sortOrder = ViewBag.UpdateDateSortparm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+
+        @if (item.PostImages.Any(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.PostImage))
+        {
+            <td>
+                <img src="~/PostImage?id=@item.PostImages.First(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.PostImage).PostImageID" alt="PostImage" width="150" />
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td width="300">
+            @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author.FirstName)
+            @Html.DisplayFor(modelItem => item.Author.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateAt)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+        </td>
+    </tr>
+}
+</table>
+
+
+<p>
+    <h3>@Html.ActionLink("Create post", "Create")</h3>
+</p>
+<br/>
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

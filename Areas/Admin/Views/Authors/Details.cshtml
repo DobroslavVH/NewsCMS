@@ -1,0 +1,60 @@
+﻿@model NewsCMS.Areas.Admin.Models.Author
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Author details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        @if (Model.AuthorAvatars.Any(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.Avatar))
+        {
+            <dt>
+                Avatar
+            </dt>
+            <dd>
+                <img src="~/AuthorAvatars?id=@Model.AuthorAvatars.First(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.Avatar).AvatarID" alt="avatar" height="80" width="80"/>
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateAt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AuthorID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,155 @@
+﻿@*@using PagedList.Mvc;
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    @model PagedList.IPagedList<NewsCMS.Areas.Admin.Models.Post>*@
+
+
+
+@model IList<NewsCMS.Areas.Admin.Models.Post>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>
+        Varna News
+    </h1>
+    <p class="lead">
+        Varna News е учебен проект ...
+    </p>
+</div>
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="col-md-4">
+        @if (item.PostImages.Any(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.PostImage))
+        {
+
+            <img src="~/PostImage?id=@item.PostImages.First(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.PostImage).PostImageID" alt="PostImage" width="320" />
+
+        }
+        <p>
+            @Html.DisplayFor(modelItem => item.CreateAt)
+        </p>
+        <h2>
+            @Html.DisplayFor(modelItem => item.Title)
+        </h2>
+        <p>
+            @Html.DisplayFor(modelItem => item.Text)
+        </p>
+        <p>
+            @Html.ActionLink("Прочети повече", "Details", new { id = item.PostID })
+        </p>
+    </div>
+}
+
+@*@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+
+
+
+
+
+
+
+
+
+
+
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Image")
+            </th>
+            <th>
+                @Html.DisplayName("Category")
+            </th>
+            <th>
+                @Html.DisplayName("Title")
+            </th>
+            <th>
+                @Html.DisplayName("Text")
+            </th>
+            <th>
+                @Html.DisplayName("Author")
+            </th>
+            <th>
+                @Html.DisplayName("Create")
+            </th>
+            <th>
+                @Html.DisplayName("Update")
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostImage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.FirstName)
+                    @Html.DisplayFor(modelItem => item.Author.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateAt)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PostID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PostID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PostID })
+                </td>
+            </tr>
+        }
+    </table>*@
+
+
+
+
+
+
+@*<div class="col-md-4">
+        <h2>
+            Title
+        </h2>
+        <p>
+            Summary
+        </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Read more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>
+            Second title
+        </h2>
+        <p>
+            Second summary
+        </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Read more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>
+            Thirt title
+        </h2>
+        <p>
+            Thirt summary
+        </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Read more &raquo;</a></p>
+    </div>*@
+
+

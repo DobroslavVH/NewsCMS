@@ -1,0 +1,72 @@
+﻿@model NewsCMS.Areas.Admin.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Post details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (Model.PostImages.Any(f => f.FileType == FileType.PostImage))
+        {
+            <dd>
+                <img src="~/PostImage?id=@Model.PostImages.First(f => f.FileType == NewsCMS.Areas.Admin.Models.FileType.PostImage).PostImageID" alt="PostImage" width="500" />
+            </dd>
+        }
+        <p></p>
+        <dt>
+            @Html.DisplayName("Author")
+        </dt>
+        <p></p>
+        <dd>
+            @Html.DisplayFor(model => model.Author.FirstName)
+            @Html.DisplayFor(model => model.Author.LastName)
+        </dd>
+        <p></p>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+        <p></p>
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+        <p></p>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <p></p>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <p></p>
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+        <p></p>
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+        <p></p>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateAt)
+        </dt>
+        <p></p>
+        <dd>
+            @Html.DisplayFor(model => model.CreateAt)
+        </dd>
+        <p></p>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateAt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdateAt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PostID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
