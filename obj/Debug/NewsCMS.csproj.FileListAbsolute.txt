@@ -74,3 +74,4 @@ C:\Users\Dobroslav\Desktop\Projects\NewsCMS\NewsCMS\obj\Debug\NewsCMS.Migrations
 C:\Users\Dobroslav\Desktop\Projects\NewsCMS\NewsCMS\obj\Debug\NewsCMS.Migrations.SubCategory.resources
 C:\Users\Dobroslav\Desktop\Projects\NewsCMS\NewsCMS\obj\Debug\NewsCMS.Migrations.SubCategoryImage.resources
 C:\Users\Dobroslav\Desktop\Projects\NewsCMS\NewsCMS\obj\Debug\NewsCMS.Migrations.CategoryImage.resources
+C:\Users\Dobroslav\Desktop\Projects\NewsCMS\NewsCMS\obj\Debug\NewsCMS.Migrations.AddNameForRoles.resources

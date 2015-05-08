@@ -13,7 +13,7 @@ using PagedList;
 
 namespace NewsCMS.Areas.Admin.Controllers
 {
-	[Authorize]
+	[Authorize(Roles = "Admin")]
 	public class AuthorsController : Controller
 	{
 		private NewsCMSContext db = new NewsCMSContext();
