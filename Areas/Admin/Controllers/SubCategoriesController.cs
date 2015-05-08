@@ -13,7 +13,7 @@ using PagedList;
 
 namespace NewsCMS.Areas.Admin.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class SubCategoriesController : Controller
     {
         private NewsCMSContext db = new NewsCMSContext();

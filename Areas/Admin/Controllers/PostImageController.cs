@@ -7,6 +7,7 @@ using NewsCMS.DAL;
 
 namespace NewsCMS.Areas.Admin.Controllers
 {
+    [Authorize]
     public class PostImageController : Controller
     {
         private NewsCMSContext db = new NewsCMSContext();
